@@ -17,11 +17,7 @@
 
     const socket = io("https://bus-w76w.onrender.com/");
     let marker;
-    socket.emit("sendLocation", {
-  userId: "shubh",
-  latitude: 28,
-  longitude: 80
-});
+    
     
     socket.on("locationUpdate", (data) => {
       const { latitude, longitude, userId } = data;
