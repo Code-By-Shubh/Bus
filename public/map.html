@@ -15,7 +15,7 @@
     const map = L.map('map').setView([30.927, 74.612], 14);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-    const socket = io("http://localhost:3000/");
+    const socket = io("https://bus-w76w.onrender.com/");
     let marker;
     socket.emit("sendLocation", {
   userId: "shubh",
