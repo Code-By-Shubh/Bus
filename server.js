@@ -117,11 +117,11 @@ io.on("connection", (socket) => {
     if (!busNumber||!routeId || !latitude || !longitude) return;
 
     try {
-      Save to DB
-      await db.query(
-        "INSERT INTO driver (busno,routeno,latitude, longitude) VALUES ($1, $2, $3, $4)",
-        [busNumber,routeId, latitude, longitude]
-      );
+      // Save to DB
+      // await db.query(
+      //   "INSERT INTO driver (busno,routeno,latitude, longitude) VALUES ($1, $2, $3, $4)",
+      //   [busNumber,routeId, latitude, longitude]
+      // );
 
       // Broadcast to all dashboards
       io.emit("locationUpdate", {busNumber ,routeId , latitude, longitude });
