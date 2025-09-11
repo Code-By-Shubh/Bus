@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="fly1">
+        <div class="fly2">
+                
+            <div class="fly5">⚛️ SKILLVAULT</div>
+            <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+            <div class="menu-wrapper" id="menu-wrapper">
+            <nav class="fly3" id="main-nav">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/skills">My Skills</a>
+                <a href="/new">Add Skills</a>
+            </nav>
+            <div class="fly6" id="auth-links">
+                <a href="/login">LOG IN</a>
+                <a href="/register" class="fly7">SIGN UP</a>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="fly43">
+        <div class="fly44">
+            <form action="" id="loginForm">
+                <h1 class="fly45">LogIn</h1>
+                <p class="fly46">Don't have an account? <a href="/register">Sign Up</a></p>
+                <div>
+                    <div class="fly47">
+                        <label for="">Email</label>
+                        <input type="email" id="email" placeholder="Enter Email">
+                    </div>
+                    <div class="fly47"> 
+                        <label for="">Password</label>
+                        <input type="password" id="password" placeholder="Enter Password">
+                    </div>
+                    <a class="fly48" href="/forget">Forget Password?</a>
+                    <div class="fly49">
+                        <button class="fly14 fly20" type="submit">
+                <span>
+                    LOG IN
+                </span>
+            </button>
+                    </div>
+                    
+                </div>
+                
+            </form>
+            
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/client.js"></script>      
+    <script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu-wrapper');
+
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('show');
+  });
+</script>     
+</body>
+</html>

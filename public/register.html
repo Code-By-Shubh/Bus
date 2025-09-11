@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="fly1">
+        <div class="fly2">
+                
+            <div class="fly5">⚛️ SKILLVAULT</div>
+            <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+            <div class="menu-wrapper" id="menu-wrapper">
+            <nav class="fly3" id="main-nav">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/skills">My Skills</a>
+                <a href="/new">Add Skills</a>
+            </nav>
+            <div class="fly6" id="auth-links">
+                <a href="/login">LOG IN</a>
+                <a href="/register" class="fly7">SIGN UP</a>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fly43">
+        <div class="fly44">
+            <form id="registerForm">
+                <h1 class="fly45">Welcome To SkillVault</h1>
+                <p class="fly46">Already a member?<a href="/login">Log In</a></p>
+                <div>
+                    <div class="fly47">
+                        <label for="">Name</label>
+                        <input type="text" id="fullName" placeholder="Enter Name">
+                    </div>
+                    <div class="fly47"> 
+                        <label for="">Email</label>
+                        <input type="email" id="email" placeholder="Enter Email">
+                    </div>
+                    <div class="fly47"> 
+                        <label for="">Password</label>
+                        <input type="password" id="password" minlength="4" placeholder="Enter Password">
+                    </div>
+                    <div class="fly47"> 
+                        <label for="">Country</label>
+                        <input type="text" id="country" placeholder="Enter Country">
+                    </div>
+                    <div class="fly49">
+                        <button class="fly14 fly20" type="submit">
+                <span>
+                    SIGN UP
+                </span>
+            </button>
+                    </div>
+                    
+                </div>
+                
+            </form>
+            
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="/js/client.js"></script>
+    <script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu-wrapper');
+
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('show');
+  });
+</script>
+</body>
+</html>

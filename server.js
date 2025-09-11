@@ -10,6 +10,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import db from './database.js';
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+const saltRounds=10;
 
 dotenv.config();
 
@@ -46,9 +48,20 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 const __dirname=dirname(fileURLToPath(import.meta.url));
 
+app.use(cookieParser());
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname+"/public/map.html");
 })
+
+app.get("/register",(req,res)=>{
+  res.sendFile(__dirname+"/public/register.html");
+})
+app.get("/login",(req,res)=>{
+  res.sendFile(__dirname+"/public/login.html");
+})
+
+
 app.post("/location", async (req, res) => {
   try {
     const { userId, latitude, longitude } = req.body;
@@ -100,15 +113,15 @@ io.on("connection", (socket) => {
   console.log("Client connected:", socket.id);
 
   socket.on("sendLocation", async (data) => {
-    const { userId, latitude, longitude } = data;
-    if (!userId || !latitude || !longitude) return;
+    const { busNumber,routeId, latitude, longitude } = data;
+    if (!busNumber||!routeId || !latitude || !longitude) return;
 
     try {
       // Save to DB
-      // await db.query(
-      //   "INSERT INTO locations (user_id, latitude, longitude, created_at) VALUES ($1, $2, $3, NOW())",
-      //   [userId, latitude, longitude]
-      // );
+      await db.query(
+        "INSERT INTO driver (busno,routeno,latitude, longitude) VALUES ($1, $2, $3, $4)",
+        [busNumber,routeId, latitude, longitude]
+      );
 
       // Broadcast to all dashboards
       io.emit("locationUpdate", { userId, latitude, longitude });
@@ -148,6 +161,137 @@ io.on("connection", (socket) => {
     console.log("Client disconnected:", socket.id);
   });
 });
+
+
+app.post("/registered",async (req,res)=>{
+  const {email,fullName,password,country}=req.body;
+  try {
+    const resultCheck=await db.query("SELECT * FROM users WHERE email=$1",[email,]);
+    if(resultCheck.rows.length>0){
+      res.json({error:"Email already exists. Try logging in."});
+    }
+    else{
+      //hashing begins
+      bcrypt.hash(password,saltRounds,async (err,hash)=>{
+        if(err){
+          console.log("error hashing password ",err);
+          res.json({error:err})
+        }
+        else{
+          await db.query("INSERT INTO users (name,email,password,country) VALUES ($1,$2,$3,$4)",
+            [fullName,email,hash,country]);
+          const result=await db.query("SELECT id FROM users WHERE email=$1",[email]);
+          const {id}=result.rows[0];
+          const token=jwt.sign({id,fullName,email},process.env.JWT_SECRET);
+          res.cookie('token',token,{
+            httpOnly:true,
+            secure:true,
+            sameSite:true,
+            maxAge:60*60*1000
+          })
+          res.json({error:null})
+        }
+      });
+    }
+  } catch (error) {
+    res.json({error:error});
+  }
+})
+
+
+
+app.post("/loggined",async (req,res)=>{
+  const {email,password}=req.body;
+  try {
+    const result=await db.query("SELECT * FROM users WHERE email=$1",[email]);
+  if(result.rows.length>0){
+    const user=result.rows[0];
+    const storedPassword=user.password;
+    const id=user.id;
+    const fullName=user.name;
+    
+    bcrypt.compare(password,storedPassword,(err,result)=>{
+      if(err){
+        res.json({error:"Error comparig passwords"})
+      }
+      else{
+        if(result){
+          const token=jwt.sign({fullName,id,email},process.env.JWT_SECRET);
+          res.cookie('token',token,{
+            httpOnly:true,
+            secure:true,
+            sameSite:true,
+            maxAge:60*60*1000
+          })
+        res.json({error:null});
+        }
+        else{
+        res.json({error:"Incorrect Password! Try logging in again."})
+        }
+      }
+      
+    })
+  }
+  else{
+    res.json({error:"User not found"});
+  }
+  } catch (error) {
+    res.json({error:error});
+  }
+  
+})
+
+app.get("/forget",(req,res)=>{
+  res.render("forgot-password.ejs");
+});
+
+app.post("/forgot-password", async (req, res) => {
+  const { email, new_password } = req.body;
+  try {
+    // Check if user exists
+    const userRes = await db.query("SELECT * FROM users WHERE email = $1", [email]);
+    console.log(email);
+    if (userRes.rows.length === 0) {
+      return res.send("No user with that email exists.");
+    }
+    const user=userRes.rows[0];
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(new_password, 10);
+
+    // Update the password in database
+    await db.query("UPDATE users SET password = $1 WHERE email = $2", [hashedPassword, email]);
+
+    const token=jwt.sign({fullName:user.name,id:user.id,email:user.email},process.env.JWT_SECRET);
+          res.cookie('token',token,{
+            httpOnly:true,
+            secure:true,
+            sameSite:true,
+            maxAge:60*60*1000
+          })
+    res.redirect("/dashboard");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error occurred.");
+  }
+});
+
+app.get("/logout",(req,res)=>{
+  res.clearCookie('token');
+  res.redirect("login");
+})
+function verifyJWT(req,res,next){
+  const token=req.cookies.token;
+  try {
+    const userPayload=jwt.verify(token,process.env.JWT_SECRET);
+    req.user=userPayload;
+    next();
+  } catch (error) {
+    res.status(403).json({ message: 'Invalid or expired token' });
+  }
+}
+
+app.use(verifyJWT);
+
 
 // ------------------------------
 // Start Server
