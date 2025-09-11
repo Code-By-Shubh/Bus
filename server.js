@@ -124,7 +124,7 @@ io.on("connection", (socket) => {
       );
 
       // Broadcast to all dashboards
-      io.emit("locationUpdate", { , latitude, longitude });
+      io.emit("locationUpdate", {busNumber ,routeId , latitude, longitude });
     } catch (err) {
       console.error("Socket DB error:", err);
     }
