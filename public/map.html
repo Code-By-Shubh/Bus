@@ -20,9 +20,9 @@
     
     
     socket.on("locationUpdate", (data) => {
-      const { latitude, longitude, userId } = data;
+      const { latitude, longitude, busNumber ,routeId } = data;
       if (!marker) {
-        marker = L.marker([latitude, longitude]).addTo(map).bindPopup("Bus " + userId);
+        marker = L.marker([latitude, longitude]).addTo(map).bindPopup("Bus " + busNumber);
       } else {
         marker.setLatLng([latitude, longitude]);
       }
