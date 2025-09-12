@@ -1,13 +1,14 @@
 currentLocation=document.getElementById("search-btn");
 if(currentLocation){
   currentLocation.addEventListener("click", async (e) => {
-  e.preventDefault();
+  console.log("button clicked")
 
     const start = document.getElementById("start-field").value;
     const end = document.getElementById("end-field").value;
     
   try {     
     const res = await axios.post("/findBus", {start,end });
+    console.log("response get");
     window.location.href="/map";
   } catch (err) {
     console.error("Error adding skill:", err);
