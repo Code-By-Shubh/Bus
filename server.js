@@ -120,13 +120,9 @@ io.on("connection", (socket) => {
       // Save to DB
       console.log("Inserting into DB:", busNumber, routeId, latitude, longitude);
       await db.query(
-  `INSERT INTO driver (busno, routeno, latitude, longitude)
-   VALUES ($1, $2, $3, $4)
-   ON CONFLICT (busno, routeno)
-   DO UPDATE SET latitude = EXCLUDED.latitude,
-                 longitude = EXCLUDED.longitude`,
-  [busNumber, routeId, latitude, longitude]
-);
+        "INSERT INTO driver (busno,routeno,latitude, longitude) VALUES ($1, $2, $3, $4)",
+        [busNumber,routeId, latitude, longitude]
+      );
        console.log("Insert successful");
       // Broadcast to all dashboards
       io.emit("locationUpdate", {busNumber ,routeId , latitude, longitude });
