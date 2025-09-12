@@ -53,6 +53,9 @@ app.use(cookieParser());
 app.get('/', (req, res) => {
   res.sendFile(__dirname+"/public/index.html");
 })
+app.get('/map', (req, res) => {
+  res.sendFile(__dirname+"/public/map.html");
+})
 
 app.get("/register",(req,res)=>{
   res.sendFile(__dirname+"/public/register.html");
@@ -62,22 +65,18 @@ app.get("/login",(req,res)=>{
 })
 
 
-app.post("/location", async (req, res) => {
+app.post("/findBus", async (req, res) => {
   try {
-    const { userId, latitude, longitude } = req.body;
+    const { start,end} = req.body;
 
-    if (!userId || !latitude || !longitude) {
-      return res.status(400).json({ error: "Missing required fields" });
-    }
+    // // Insert into DB
+    // await db.query(
+    //   "INSERT INTO locations (user_id, latitude, longitude, created_at) VALUES ($1, $2, $3, NOW())",
+    //   [userId, latitude, longitude]
+    // );
 
-    // Insert into DB
-    await db.query(
-      "INSERT INTO locations (user_id, latitude, longitude, created_at) VALUES ($1, $2, $3, NOW())",
-      [userId, latitude, longitude]
-    );
-
-    // Notify live dashboards
-    io.emit("locationUpdate", { userId, latitude, longitude });
+    // // Notify live dashboards
+    // io.emit("locationUpdate", { userId, latitude, longitude });
 
     res.json({ message: "Location saved successfully" });
   } catch (err) {

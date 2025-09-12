@@ -1,3 +1,20 @@
+currentLocation=document.getElementById("search-btn");
+if(currentLocation){
+  currentLocation.addEventListener("client", async (e) => {
+  e.preventDefault();
+
+    const start = document.getElementById("start-field").value;
+    const end = document.getElementById("end-field").value;
+    
+  try {     
+    const res = await axios.post("findBus", {start,end });
+    window.location.href="/map";
+  } catch (err) {
+    console.error("Error adding skill:", err);
+  }
+});
+}
+
 newSkillForm=document.getElementById("newSkillForm");
 if(newSkillForm){
   newSkillForm.addEventListener("submit", async (e) => {
