@@ -1,6 +1,6 @@
 currentLocation=document.getElementById("search-btn");
 if(currentLocation){
-  currentLocation.addEventListener("client", async (e) => {
+  currentLocation.addEventListener("click", async (e) => {
   e.preventDefault();
 
     const start = document.getElementById("start-field").value;
