@@ -51,7 +51,7 @@ const __dirname=dirname(fileURLToPath(import.meta.url));
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname+"/public/index.html");
+  res.sendFile(__dirname+"/public/map.html");
 })
 app.get('/map', (req, res) => {
   res.sendFile(__dirname+"/public/map.html");
