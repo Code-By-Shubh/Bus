@@ -20,7 +20,7 @@
     
     
     socket.on("locationUpdate", (data) => {
-      const { latitude, longitude, busNumber ,routeId } = data;
+      let { latitude, longitude, busNumber ,routeId } = data;
       latitude=parseFloat(latitude);
       longitude=parseFloat(longitude);
       if (!marker) {
