@@ -7,7 +7,7 @@ if(currentLocation){
     const end = document.getElementById("end-field").value;
     
   try {     
-    const res = await axios.post("findBus", {start,end });
+    const res = await axios.post("/findBus", {start,end });
     window.location.href="/map";
   } catch (err) {
     console.error("Error adding skill:", err);
