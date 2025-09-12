@@ -21,6 +21,8 @@
     
     socket.on("locationUpdate", (data) => {
       const { latitude, longitude, busNumber ,routeId } = data;
+      latitude=parseFloat(latitude);
+      longitude=parseFloat(longitude);
       if (!marker) {
         marker = L.marker([latitude, longitude]).addTo(map).bindPopup("Bus " + busNumber);
       } else {
