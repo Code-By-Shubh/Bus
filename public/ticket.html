@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ticket Booking</title>
+
+  <style>
+    /* Reset some default styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #555;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      font-weight: 700;
+      font-size: 20px;
+      color: #203a5a;
+    }
+
+    header .back-arrow {
+      margin-right: 10px;
+      font-size: 24px;
+      user-select: none;
+      color: #203a5a;
+      text-decoration: none;
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      padding: 40px 20px;
+    }
+
+    .text-service-unavailable {
+      color: #888;
+      font-weight: 600;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      padding: 10px 20px;
+      background: black;
+      color: white;
+      font-weight: 600;
+      font-size: 12px;
+      text-align: center;
+      user-select: none;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 5px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="back-arrow">&#8592;</a>
+    Ticket Booking
+  </header>
+
+  <main>
+    <img src="icon 2.svg" alt="tickets" width="100" height="100">
+    <div class="text-service-unavailable">Service is not available</div>
+  </main>
+
+  <footer>
+    Powered by Raahi – Smarter Transit for India<br />
+    🌐<a href="#" onclick="window.open('https://instagram.com', '_blank')">Instagram</a> |
+    <a href="#" onclick="window.open('https://twitter.com', '_blank')">Twitter</a> |
+    <a href="#" onclick="window.open('https://facebook.com', '_blank')">Facebook</a>
+  </footer>
+</body>
+</html>

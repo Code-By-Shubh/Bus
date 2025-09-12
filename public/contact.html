@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact Us</title>
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html,body { height: 100%; margin: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: #f6f7f9;
+      color: #122034;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height: 1.4;
+      padding-bottom: 72px; 
+    }
+
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #fff;
+      border-bottom: 1px solid #e0e4e8;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .back-btn {
+      display: inline-grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #d3d7db;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .title { font-weight: 700; color: #0b2b4a; font-size: 18px; }
+
+   
+    .container {
+      max-width: 460px;
+      margin: 18px auto;
+      padding: 0 14px;
+    }
+
+  
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media(min-width: 720px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: 0 6px 18px rgba(10,20,30,0.06);
+      border: 1px solid rgba(10,20,30,0.03);
+    }
+    .card h3 {
+      margin: 0 0 8px 0;
+      font-size: 15px;
+      color: #0b2b4a;
+    }
+    .muted { color: #516277; font-size: 13px; margin-top: 6px; }
+
+  
+    .contact-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin: 10px 0;
+    }
+    .icon {
+      width: 36px;
+      height: 36px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 8px;
+      background: #f3f6f9;
+      flex-shrink: 0;
+      border: 1px solid rgba(10,20,30,0.03);
+    }
+    .contact-item a {
+      color: #06407a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .contact-item .text {
+      font-size: 14px;
+      color: #223249;
+    }
+
+    
+    .map-wrapper {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(10,20,30,0.03);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+  
+      aspect-ratio: 16 / 9;
+      background: #e9edf2;
+    }
+    .map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+   
+    .contact-form {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .contact-form label { font-size: 13px; color: #33475b; }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #d7dbe0;
+      font-size: 14px;
+      background: #fff;
+      resize: vertical;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: #06407a;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+    }
+
+    
+    .social-row {
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      margin-top: 8px;
+    }
+    .social {
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:8px;
+      background:#f3f6f9;
+      border: 1px solid rgba(10,20,30,0.03);
+      text-decoration:none;
+      color:#0b2b4a;
+      font-weight:600;
+      font-size:13px;
+    }
+
+
+    .footer {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      background: #05060b;
+      color: #fff;
+      text-align: center;
+      padding: 10px 6px;
+      font-size: 12px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+    }
+    .footer .links { margin-top: 6px; display:flex; gap:8px; justify-content:center; }
+    .footer a { color:#bcd3ff; text-decoration:none; font-weight:600; font-size:12px; }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <button class="back-btn" aria-label="Go back" onclick="history.back()">
+   
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <path d="M15 18l-6-6 6-6" stroke="#0b2b4a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="title">Contact Us</div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+
+    
+      <section class="card" aria-labelledby="getintouch">
+        <h3 id="getintouch">📞 Get in touch</h3>
+
+        <div class="contact-item">
+          <div class="icon" aria-hidden>
+           
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 3.08 4.18 2 2 0 0 1 5 2h3a2 2 0 0 1 2 1.72c.12.98.37 1.94.73 2.84a2 2 0 0 1-.45 2.11L9.91 10.09a15.05 15.05 0 0 0 6 6l1.42-1.42a2 2 0 0 1 2.11-.45c.9.36 1.86.61 2.84.73A2 2 0 0 1 22 16.92z" stroke="#0b2b4a" stroke-width="0.8" fill="none"/></svg>
+          </div>
+          <div>
+            <a href="tel:+911800140000">1800 1400 000</a>
+            <div class="muted">Toll-free | Mon–Sat 9:00–18:00</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="icon" aria-hidden>
+           
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 8.5v7A2.5 2.5 0 0 0 5.5 18h13A2.5 2.5 0 0 0 21 15.5v-7" stroke="#0b2b4a" stroke-width="0.9" fill="none"/><path d="M3 8.5l8.5 6L20 8.5" stroke="#0b2b4a" stroke-width="0.9" fill="none"/></svg>
+          </div>
+          <div>
+            <a href="mailto:support@raahi.example">support@raahi.example</a>
+            <div class="muted">Expect reply within 24 hours</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="icon" aria-hidden>
+           
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s-6-4.35-6-9a6 6 0 1 1 12 0c0 4.65-6 9-6 9z" stroke="#0b2b4a" stroke-width="0.9" fill="none"/><circle cx="12" cy="11" r="1.6" fill="#0b2b4a"/></svg>
+          </div>
+          <div>
+            <a href="https://maps.google.com/?q=Amritsar,Punjab" target="_blank" rel="noopener">Amritsar, Punjab</a>
+            <div class="muted">Main office</div>
+          </div>
+        </div>
+
+       
+      </section>
+
+     
+      <section class="card" aria-labelledby="office">
+        <h3 id="office">📍 Our location</h3>
+        <div class="map-wrapper" aria-hidden="false">
+          <iframe
+            src="https://www.google.com/maps?q=Amritsar,Punjab&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="muted" style="margin-top:10px">Open for visitors by appointment</div>
+      </section>
+
+     
+      <section class="card" style="grid-column: 1 / -1;">
+        <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start;">
+          <div style="flex:1 1 220px; min-width:180px;">
+            <h3>⏰ Support hours</h3>
+            <div class="muted">Mon – Sat</div>
+            <div style="font-weight:700;color:#0b2b4a;margin-top:6px">09:00 — 18:00</div>
+            <div class="muted" style="margin-top:12px">Emergency: <a href="tel:+911800140001" style="color:#06407a; font-weight:700">1800-14-EMRG</a></div>
+          </div>
+
+          <div style="flex:1 1 260px; min-width:200px;">
+            <h3>✉️ Send a message</h3>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent (demo)');">
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" required>
+
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="you@domain.com" required>
+
+              <label for="msg">Message</label>
+              <textarea id="msg" rows="3" placeholder="How can we help?" required></textarea>
+
+              <div style="display:flex;justify-content:flex-end;">
+                <button class="btn" type="submit">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    Powered by Raahi – Smarter Transit for India
+    <div class="links">
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="Twitter">Twitter</a>
+      <a href="#" aria-label="Facebook">Facebook</a>
+    </div>
+  </footer>
+
+</body>
+</html>

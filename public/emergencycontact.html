@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency contacts</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .phone-container {
+      width: 375px;
+      min-height: 812px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      background: #f5f5f5;
+      padding: 15px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .header a {
+      text-decoration: none;
+      color: black;
+      margin-right: 10px;
+      font-size: 22px;
+    }
+
+    
+    .contact-list {
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      background: #f2f2f2;
+      padding: 12px 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .contact-card img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+ 
+    .add-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 12px 30px;
+      background: black;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      padding: 10px;
+      background: #000;
+      color: #fff;
+    }
+    .footer a {
+      color: #fff;
+      margin: 0 5px;
+      text-decoration: none;
+    }
+
+    
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .popup-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 300px;
+      text-align: center;
+    }
+    .popup-content h3 {
+      margin-bottom: 15px;
+    }
+    .popup-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .popup-content button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .close-btn {
+      background: red;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-container">
+    
+    <div class="header">
+      <a href="index.html">←</a>
+      Emergency Contacts
+    </div>
+
+   
+    <div class="contact-list" id="contactList">
+      <div class="contact-card">
+        <img src="ContactNo.svg" alt="phone"/>
+        Police
+      </div>
+      <div class="contact-card">
+        <img src="ContactNo.svg" alt="phone"/>
+        Fire
+      </div>
+      <div class="contact-card">
+        <img src="ContactNo.svg" alt="phone"/>
+        Papa
+      </div>
+
+      <button class="add-btn" id="openPopup">Add Contacts</button>
+    </div>
+
+    <div class="footer">
+      Powered by Raahi – Smarter Transit for India <br>
+      © <a href="#">Instagram</a> | <a href="#">Twitter</a> | <a href="#">Facebook</a>
+    </div>
+  </div>
+
+ 
+  <div class="popup" id="popupForm">
+    <div class="popup-content">
+      <h3>Add Contact</h3>
+      <input type="text" id="contactName" placeholder="Enter name" required>
+      <input type="text" id="contactNumber" placeholder="Enter number" required>
+      <div>
+        <button id="saveContact">Save</button>
+        <button class="close-btn" id="closePopup">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const openPopupBtn = document.getElementById('openPopup');
+    const popup = document.getElementById('popupForm');
+    const closePopupBtn = document.getElementById('closePopup');
+    const saveContactBtn = document.getElementById('saveContact');
+    const contactList = document.getElementById('contactList');
+
+    
+    openPopupBtn.addEventListener('click', () => {
+      popup.style.display = 'flex';
+    });
+
+ 
+    closePopupBtn.addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+
+  
+    saveContactBtn.addEventListener('click', () => {
+      const name = document.getElementById('contactName').value.trim();
+      const number = document.getElementById('contactNumber').value.trim();
+
+      if(name && number) {
+        const newCard = document.createElement('div');
+        newCard.classList.add('contact-card');
+        newCard.innerHTML = `<img src="call.png" alt="phone"/> ${name} (${number})`;
+        contactList.insertBefore(newCard, openPopupBtn);
+
+        
+        document.getElementById('contactName').value = '';
+        document.getElementById('contactNumber').value = '';
+        popup.style.display = 'none';
+      } else {
+        alert("Please enter both name and number!");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find my bus</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    
+    .header {
+      background: white;
+      padding: 15px 20px;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #123355;
+    }
+
+    .header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #123355;
+    }
+
+    
+    .search-section {
+      padding: 20px;
+      border-bottom: 8px solid #f5f5f5;
+      text-align: center;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 25px;
+      font-size: 14px;
+      margin-bottom: 12px;
+      outline: none;
+    }
+
+    .swap-icon {
+      font-size: 20px;
+      margin: 5px 0;
+      display: block;
+      color: #666;
+    }
+
+    .search-btn {
+      width: 100%;
+      padding: 14px;
+      background: #000;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .search-btn:hover {
+      background: #333;
+    }
+
+    
+    .results-section {
+      padding: 15px;
+    }
+
+    .bus-card {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .arrival-time {
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .route-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stop-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .bus-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f2f2f2;
+      font-size: 18px;
+    }
+
+    .stop-details {
+      text-align: left;
+    }
+
+    .stop-label {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .stop-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .arrow {
+      font-size: 18px;
+      margin: 0 10px;
+      color: #666;
+    }
+
+    
+    .footer {
+      background: #000;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .social-links {
+      font-size: 12px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="header">
+      <button class="back-btn" onclick="goBack()">←</button>
+      <h1>Find my bus</h1>
+    </div>
+
+    
+    <div class="search-section">
+      <input type="text" class="input-field" placeholder="Enter Starting Point">
+      <span class="swap-icon">⇅</span>
+      <input type="text" class="input-field" placeholder="Enter Ending Point">
+      <button class="search-btn">Find my bus</button>
+    </div>
+
+ 
+    <div class="results-section">
+      <div class="bus-card">
+        <div class="arrival-time">Arriving in 15 minutes</div>
+        <div class="route-info">
+          <div class="stop-info">
+            <div class="bus-icon"><img src="icon 1.png" height="30px" alt=""></div>
+            <div class="stop-details">
+              <div class="stop-label">From</div>
+              <div class="stop-name">Bus Stop A</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="stop-info">
+            <div class="bus-icon"><img src="icon5.png" height="25px" alt=""></div>
+            <div class="stop-details">
+              <div class="stop-label">Take Up32AX1503</div>
+              <div class="stop-name">Bus</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bus-card">
+        <div class="arrival-time">Arriving in 15 minutes</div>
+        <div class="route-info">
+          <div class="stop-info">
+            <div class="bus-icon"><img src="icon 1.png" height="30px" alt=""></div>
+            <div class="stop-details">
+              <div class="stop-label">From</div>
+              <div class="stop-name">Bus Stop A</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="stop-info">
+            <div class="bus-icon"><img src="icon5.png" height="25px" alt=""></div>
+            <div class="stop-details">
+              <div class="stop-label">Take Up32AX1503</div>
+              <div class="stop-name">Bus</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bus-card">
+        <div class="arrival-time">Arriving in 15 minutes</div>
+        <div class="route-info">
+          <div class="stop-info">
+            <div class="bus-icon"><img src="icon 1.png" height="30px" alt=""></div>
+            <div class="stop-details">
+              <div class="stop-label">From</div>
+              <div class="stop-name">Bus Stop A</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="stop-info">
+            <div class="bus-icon"><img src="icon5.png" height="25px" alt=""></div>
+            <div class="stop-details">
+              <div class="stop-label">Take Up32AX1503</div>
+              <div class="stop-name">Bus</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   \
+    <div class="footer">
+      <div class="footer-text">Powered by Raahi – Smarter Transit for India</div>
+      <div class="social-links">📷 Instagram | 🐦 Twitter | 📘 Facebook</div>
+    </div>
+  </div>
+
+  <script>
+    function goBack() {
+      alert("Back button clicked!");
+    
+    }
+  </script>
+</body>
+</html>
