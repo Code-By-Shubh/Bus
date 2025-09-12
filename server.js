@@ -118,10 +118,10 @@ io.on("connection", (socket) => {
 
     try {
       // Save to DB
-      // await db.query(
-      //   "INSERT INTO driver (busno,routeno,latitude, longitude) VALUES ($1, $2, $3, $4)",
-      //   [busNumber,routeId, latitude, longitude]
-      // );
+      await db.query(
+        "INSERT INTO driver (busno,routeno,latitude, longitude) VALUES ($1, $2, $3, $4)",
+        [busNumber,routeId, latitude, longitude]
+      );
 
       // Broadcast to all dashboards
       io.emit("locationUpdate", {busNumber ,routeId , latitude, longitude });
